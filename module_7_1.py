@@ -11,20 +11,20 @@ class Shop:
     __file_name = 'products.txt'
 
     def get_products(self):
-        with open(self.__file_name, 'r+') as file:
+            file = open(self.__file_name, 'r')
             content = file.read()
             file.close()
-        return content
+            return content
 
-     def add(self, *products):
-        self.get_products()
-        for i in products:
-            if self.get_product().find(f'{i}') == -1:
-                with open(self.__file_name, 'a+') as file:
-                    file.write(f'{i}\n')
-                    file.close()
+    def add(self, *products):
+        _products = self.get_products()
+        for product in products:
+            if product.name in _products:
+                print(f'Продукт {str(product.name)} уже есть в магазине')
             else:
-                print(f'Продукт {i} уже есть в магазине')
+                _file = open(self.__file_name, 'a')
+                _file.write(f'{str(product)}\n')
+                _file.close()
 
 
 
@@ -34,5 +34,6 @@ s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
 p2 = Product('Spaghetti', 3.4, 'Groceries')
 p3 = Product('Potato', 5.5, 'Vegetables')
+print(p2)
 s1.add(p1, p2, p3)
 print(s1.get_products())
