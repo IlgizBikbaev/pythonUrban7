@@ -1,6 +1,4 @@
 import string
-import itertools
-
 
 class WordsFinder:
     result ={}
